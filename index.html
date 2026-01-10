@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stillness = Clarity — Interactive Audiovisual Work</title>
+  <style>
+    :root{
+      --bg:#07070a;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.045);
+      --border: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --muted2: rgba(255,255,255,0.56);
+      --shadow: 0 14px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+    html, body { margin:0; height:100%; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    a { color: var(--text); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 16px 44px; }
+
+    header {
+      display:flex; align-items:flex-start; justify-content: space-between;
+      gap: 14px; margin-bottom: 14px;
+    }
+    h1 { font-size: 26px; margin:0 0 6px; letter-spacing: 0.2px; }
+    .sub { margin:0; color:var(--muted); line-height:1.45; max-width: 78ch; }
+
+    .pillRow{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 12px; }
+    .pill {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .actions{ display:flex; gap:10px; flex-wrap: wrap; justify-content: flex-end; margin-top: 2px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 10px 12px; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--panel);
+      color: var(--text); box-shadow: var(--shadow);
+      cursor:pointer; user-select:none; font-weight: 700; font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover{ background: rgba(255,255,255,0.10); }
+    .btn.secondary{ background: rgba(255,255,255,0.045); box-shadow:none; }
+    .btn.secondary:hover{ background: rgba(255,255,255,0.07); }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      margin-top: 14px;
+    }
+    .card h2{ margin:0 0 8px; font-size: 16px; letter-spacing: 0.2px; }
+    .card p{ margin:0; color: var(--muted); line-height: 1.5; }
+    .muted2{ color: var(--muted2); }
+
+    .twoCol{
+      display:grid; gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){
+      header{ flex-direction: column; }
+      .actions{ justify-content: flex-start; }
+      .twoCol{ grid-template-columns: 1fr; }
+    }
+
+    .preview{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow:hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    iframe{
+      width: 100%;
+      height: 460px;
+      border: 0;
+      display:block;
+      background: #07070a;
+    }
+    .previewFoot{
+      padding: 10px 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted2);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    details{
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 780;
+      color: rgba(255,255,255,0.92);
+      list-style:none;
+      outline:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details[open]{ background: rgba(255,255,255,0.05); }
+    .topicBody{
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13.5px;
+    }
+
+    code.k{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 2px 6px;
+      border-radius: 10px;
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Stillness = Clarity</h1>
+        <p class="sub">
+          Interactive audiovisual work for <span class="muted2">Computing, Digital Audio, & Interface Design</span>.
+          Movement acts as interference; stillness produces clarity and resolution.
+        </p>
+        <div class="pillRow">
+          <div class="pill">Vision + Hearing</div>
+          <div class="pill">Web Audio API • Canvas</div>
+          <div class="pill">Mapping • Attention • Intensity</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="./stillness-clarity.html" target="_blank" rel="noopener">Open full activity</a>
+        <a class="btn secondary" href="./stillness-clarity.html" download>Download HTML</a>
+      </div>
+    </header>
+
+    <div class="twoCol">
+      <div class="card">
+        <h2>Description (1 paragraph)</h2>
+        <p>
+          <span class="muted2">
+            Stillness = Clarity is an interactive audiovisual piece in which cursor movement acts as perceptual interference.
+            The system measures cursor velocity and distance from the screen center, mapping them to sound and visuals:
+            movement increases sonic masking (noise + low-pass filtering) and destabilizes the orb (jitter, trails), while stillness restores brightness
+            and triggers a soft “arrival” note. Pitch is quantized to a musical scale, and color fields shift with tension (distance) and clarity (stillness),
+            inviting the user to experience a rule of perception: restraint produces resolution.
+          </span>
+        </p>
+
+        <p style="margin-top:10px;" class="muted2">
+          Audio note: browsers require a user gesture. Inside the activity, click <code class="k">START AUDIO</code>.
+        </p>
+      </div>
+
+      <div class="card preview">
+        <iframe src="./stillness-clarity.html" title="Stillness = Clarity preview"></iframe>
+        <div class="previewFoot">
+          Embedded preview. If audio is blocked inside the frame, open the activity in a new tab using <code class="k">Open full activity</code>.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Analysis by topic</h2>
+      <p class="muted2">Expandable sections aligned with the assignment criteria.</p>
+
+      <details>
+        <summary>Perception • Gestalt (vision/hearing) • Multisensory integration • Illusions • Visual dominance</summary>
+        <div class="topicBody">
+          Perception is active organization: the brain groups, predicts, and stabilizes sensory input. This work uses movement as uncertainty:
+          rapid motion increases acoustic masking (noise + reduced spectral clarity) and visual instability (jitter + smear), weakening figure/ground segregation;
+          stillness restores stable grouping. Gestalt equivalences appear cross-modally: figure/ground (orb/tonal center vs field/noise), proximity/grouping (repeated
+          scale tones and clustered particles), good continuation (smooth parameter change and continuous trails), and closure (a discrete “arrival” event).
+          Multisensory integration is supported by a common-cause structure: the same latent variable (movement intensity) drives both modalities, and temporal synchrony
+          promotes binding. The piece invites cross-modal bias (akin to audiovisual capture): users may attribute sonic causality to the visible orb because vision supplies
+          strong spatial priors and stable scene explanations, often dominating audition in causal inference.
+        </div>
+      </details>
+
+      <details>
+        <summary>Semantic typologies & relationship with attention (examples)</summary>
+        <div class="topicBody">
+          The interaction carries layered semantics. Sensorimotor: a quickly learned rule (move → interference, still → clarity). Affective: stillness reads as presence/calm,
+          while distance introduces tension via pitch and color. Conceptual: it becomes a metaphor for attentional regulation, where agitation produces noise and sustained
+          attention produces resolution. Attention is shaped bottom-up by salient events (sparks, sudden stabilization, arrival note) and top-down by the user’s goal of
+          achieving clarity, encouraging deliberate slowing and control.
+        </div>
+      </details>
+
+      <details>
+        <summary>Semiology: Icon • Index • Symbol • Gaver: nomic • metaphorical • symbolic mappings</summary>
+        <div class="topicBody">
+          The strongest sign type is indexical: jitter, blur, and added noise are direct traces of movement intensity. The orb and aurora field have partial iconicity
+          (they resemble energy/atmosphere more than literal objects), while titles, labels, and scale names are symbolic conventions. In Gaver’s terms, movement-to-masking
+          is nomic-like (resembling physical interference reducing clarity); distance-to-tension is metaphorical (space → harmonic affect); and the choice of musical scales is
+          symbolic-cultural, relying on learned musical codes to shape meaning and expectation.
+        </div>
+      </details>
+
+      <details>
+        <summary>Attention • Intensity • Continuities and discontinuities (taxonomy)</summary>
+        <div class="topicBody">
+          Attention is modulated by intensity: not only loudness/brightness, but also rate-of-change and eventfulness. The piece alternates continuity and discontinuity.
+          Continuities include smooth cursor drift producing continuous filter/pitch modulation, continuous trails, and slow hue drift (supporting sustained attention).
+          Discontinuities include threshold-crossing into stillness triggering an “arrival” note (event boundary), spark punctuations, and abrupt motion producing immediate
+          masking and instability (interrupt). This creates a legible attentional rhythm: continuity invites exploration; discontinuity captures attention and marks structure.
+        </div>
+      </details>
+
+      <details>
+        <summary>Paradigmatic examples: installation • sound art • audio-visual performance • experimental film</summary>
+        <div class="topicBody">
+          Installation paradigms: sustained audiovisual fields with punctuating events (ambient continuity + discrete markers) reflect how installations let attention drift
+          and then re-focus at thresholds. Sound art paradigms: indexical motion→sound mappings align with interactive sound art where action leaves perceptual traces.
+          Audio-visual performance paradigms: shared control signals creating audiovisual lock mirror realtime A/V strategies built on synchrony.
+          Experimental film paradigms: discontinuity structuring attention (cuts, punctuation, phrase boundaries) is echoed by the arrival event acting as a micro-cut inside a
+          continuous sensory field.
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>Files</h2>
+      <p class="muted2">
+        Keep <code class="k">index.html</code> and <code class="k">stillness-clarity.html</code> in the same folder.
+        The activity link uses a relative path (<code class="k">./stillness-clarity.html</code>).
+      </p>
+    </div>
+  </div>
+</body>
+</html>
